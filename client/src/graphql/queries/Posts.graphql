@@ -1,0 +1,15 @@
+query Posts ($cursor: Int, $limit: Int) {
+    posts (cursor: $cursor, limit: $limit) {
+        posts {
+            id
+            title
+            textSnippet
+            points
+            createdAt
+            creator {
+                username
+            } 
+        }
+        hasMore
+    }
+}
