@@ -25,14 +25,14 @@ const PostPage = () => {
     return (
         <div className="container">
             <h3 className="mt-4">{data?.post?.title}</h3>
-    <p className="card-text"><small className="text-muted">{dateFormatter(data?.post?.createdAt as string)}</small></p>
-    <p className={classNames({
-        'red': data.post?.points < 0,
-        'green': data.post?.points > 0
-    })}>Rating: {data.post?.points}</p>
-    <p>{data.post?.text}</p>
-    <p>Author: {data.post?.creator.username}</p>
-    {/* <p>Other posts{data.post?.text}</p> */}
+            <p className="card-text"><small className="text-muted">{dateFormatter(data?.post?.createdAt as string)}</small></p>
+            <p className={classNames({
+                'red': data.post?.points < 0,
+                'green': data.post?.points > 0
+            })}>Rating: {data.post?.points}</p>
+            <p>{data.post?.text}</p>
+            <p>Author: {data.post?.creator.username}</p>
+            {/* <p>Other posts{data.post?.text}</p> */}
         </div>
 
     )

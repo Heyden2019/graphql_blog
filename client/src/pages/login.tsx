@@ -1,10 +1,13 @@
 import { useFormik } from 'formik';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react'
 import MyField from '../components/MyField';
 import { MeDocument, useLoginMutation } from '../generated/graphql';
 
 const Login = () => {
+
+  const router = useRouter()
   
   const [login] = useLoginMutation({ update: (store, {data}) => {
     if(data?.login.user) {
@@ -15,7 +18,6 @@ const Login = () => {
         }
       })
     }
-
   }})
 
   const formik = useFormik({
@@ -30,12 +32,10 @@ const Login = () => {
           setFieldError(field, message)
         })
       } else if (data?.login.user) {
-        //  redirect will be here
-        return
+        router.push('/')
       }
     }
   })
-
 
   return (
     <div className="container">

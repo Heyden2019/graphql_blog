@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { MeDocument, useLogoutMutation, useMeQuery } from '../generated/graphql'
-import {Navbar, Nav, FormControl, NavDropdown, Form, Button} from 'react-bootstrap'
+import {Navbar, Nav, NavDropdown} from 'react-bootstrap'
 
 const NavBar = () => {
 

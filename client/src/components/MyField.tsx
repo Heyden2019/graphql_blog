@@ -14,11 +14,11 @@ const MyField: FC<PropsType> = ({placeholder, name, formik, type}) => {
             <div className="col-md-6 mb-3 mx-auto">
                 <label htmlFor={name}>{placeholder}</label>
                 <input type={type} 
-                    className={classNames("form-control", {'is-invalid': formik.errors[name]})}
+                    className={classNames("form-control", {'is-invalid': !!formik.submitCount && formik.getFieldMeta(name).touched && formik.errors[name]})}
                     id={name}
                     {...formik.getFieldProps(name)}
                     />
-                {formik.errors[name] && <div className="invalid-feedback">
+                {!!formik.submitCount && formik.getFieldMeta(name).touched && formik.errors[name] && <div className="invalid-feedback">
                     {formik.errors[name]}
                 </div> }
             </div>

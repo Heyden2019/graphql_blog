@@ -4,6 +4,7 @@ query Post ($id: Int!) {
         text
         points
         createdAt
+        voteStatus
         creator {
             username
             posts {

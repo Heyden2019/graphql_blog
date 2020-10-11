@@ -4,9 +4,8 @@ import NavBar from './NavBar';
 const Wrapper = ({children}: any) => {
     return (
         <div>
-                <NavBar />
-    <div className="content">{children}</div>
-            
+            <NavBar />
+            <div className="content">{children}</div>
         </div>
     )
 }

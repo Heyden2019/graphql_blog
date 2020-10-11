@@ -39,16 +39,15 @@ export class PostResolver {
         return updoot?.value || null
     }
 
-    @Mutation(() => Boolean)
+    @Mutation(() => Post, {nullable: true})
     @UseMiddleware(isAuth)
     async vote(
         @Arg('postId', () => Int) postId: number,
         @Arg('value', () => Int) value: number,
         @Ctx() {req}: myContext
-    ) {
+    ): Promise<Post | undefined >   {
         const userId = req.session.userId
-        const isUpdoot = value !== -1
-        const realValue = isUpdoot ? 1 : -1
+        const realValue = value !== -1 ? 1 : -1
         const updoot = await Updoot.findOne({where: {userId, postId}})
         if (updoot && updoot.value !== realValue ) {
             updoot.value = realValue
@@ -58,7 +57,7 @@ export class PostResolver {
             await Updoot.insert({userId, postId, value: realValue})
             await Post.update(postId, {points: ()=> `points + ${realValue}`})
         }
-        return true
+        return await Post.findOne(postId, {relations: ['creator']})
     }
 
     @Query(() => PaginatedPosts)
